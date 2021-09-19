@@ -13,9 +13,13 @@
         	</div>
         </center>
 	</body>
+<<<<<<< HEAD
 </html>fsdf 
 fsdkjflsdfdsf
 fsdkjflsdfdsf
 dfss
 dfssf
-sdl;
+=======
+</html>
+dfjlsfkjs
+>>>>>>> y
