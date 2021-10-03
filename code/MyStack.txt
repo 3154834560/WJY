@@ -7,17 +7,7 @@ import java.util.Stack;
 /**
  * @author d
  */
-class P{
-    int t;
-    P(int t){
-        this.t=t;
-    }
 
-    @Override
-    public String toString() {
-        return ""+t;
-    }
-}
 public class Y {
 
     public static void main(String[] args) {
@@ -98,6 +88,7 @@ class MyStack<T> implements Iterable<T>{
     void removeAll(){
        this.head=null;
        this.current=null;
+       this.size=0;
     }
 
     T top() {
@@ -122,7 +113,7 @@ class MyStack<T> implements Iterable<T>{
         }
         return false;
     }
-    
+
 }
 
 class EmptyMyStackException extends  RuntimeException {
