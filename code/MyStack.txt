@@ -1,0 +1,112 @@
+package com.example.demo;
+
+import java.util.EmptyStackException;
+import java.util.Iterator;
+import java.util.Stack;
+
+/**
+ * @author d
+ */
+
+public class Y {
+
+    public static void main(String[] args) {
+
+    }
+}
+class MyStack<T> implements Iterable<T>{
+    private int size=0;
+    private Node<T> head=null;
+    private Node<T> current=null;
+
+    private static class Node<T>{
+        T data;
+        Node<T> next;
+        Node<T> pre;
+    }
+
+    public int size(){
+        return this.size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyStackIterator (this.size,this.head);
+    }
+
+    class MyStackIterator implements Iterator<T>{
+        private int size;
+        private Node<T> first;
+        MyStackIterator(int size,Node<T> first){
+            this.size=size;
+            this.first=first;
+        }
+        @Override
+        public boolean hasNext() {
+            return this.size>0;
+        }
+
+        @Override
+        public T next() {
+            this.size--;
+            T data=this.first.data;
+            this.first=this.first.next;
+            return data;
+        }
+    }
+
+    void push(T data){
+        Node<T> now=new Node<T>();
+        now.data=data;
+        now.next=null;
+        now.pre=null;
+        this.size++;
+        if(this.head==null){
+            head=now;
+            current=now;
+        } else {
+            current.next=now;
+            now.pre=current;
+            current=now;
+        }
+    }
+
+    void pop() {
+        if(size>0){
+            current=current.pre;
+            this.size--;
+        } else {
+             throw new EmptyMyStackException();
+        }
+    }
+
+    T top() {
+        if(size>0){
+            return current.data;
+        } else {
+            throw new EmptyMyStackException();
+        }
+    }
+
+    boolean isEmpty(){
+        return this.size==0;
+    }
+}
+
+class EmptyMyStackException extends  RuntimeException {
+    public EmptyMyStackException() {
+        super();
+    }
+
+    public EmptyMyStackException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public EmptyMyStackException(String message) {
+        super(message);
+    }
+
+    public EmptyMyStackException(Throwable cause) {
+        super(cause);
+    }
+}
