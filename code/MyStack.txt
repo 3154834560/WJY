@@ -7,11 +7,26 @@ import java.util.Stack;
 /**
  * @author d
  */
+class P{
+    int t;
+    P(int t){
+        this.t=t;
+    }
 
+    @Override
+    public String toString() {
+        return ""+t;
+    }
+}
 public class Y {
 
     public static void main(String[] args) {
+        MyStack<Integer> s=new MyStack<>();
+        for (int i=1;i<=6;i++){
+            s.push(i);
+        }
 
+        System.out.println( );
     }
 }
 class MyStack<T> implements Iterable<T>{
@@ -73,11 +88,16 @@ class MyStack<T> implements Iterable<T>{
 
     void pop() {
         if(size>0){
-            current=current.pre;
+            this.current=this.current.pre;
             this.size--;
         } else {
              throw new EmptyMyStackException();
         }
+    }
+
+    void removeAll(){
+       this.head=null;
+       this.current=null;
     }
 
     T top() {
@@ -91,6 +111,18 @@ class MyStack<T> implements Iterable<T>{
     boolean isEmpty(){
         return this.size==0;
     }
+
+    boolean contains(T s){
+        Node<T> next=this.head;
+        while (next!=null){
+            if(next.data.toString().equals(s.toString())){
+                return true;
+            }
+            next=next.next;
+        }
+        return false;
+    }
+    
 }
 
 class EmptyMyStackException extends  RuntimeException {
